@@ -1,6 +1,8 @@
 
 package examen2p2_alejandrocardona;
 
+import javax.swing.JOptionPane;
+
 public class MainUI extends javax.swing.JFrame {
 
     /**
@@ -20,6 +22,8 @@ public class MainUI extends javax.swing.JFrame {
     private void initComponents() {
 
         MainPanel = new javax.swing.JPanel();
+        TP_Cliente = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         CB_Usuarios = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -29,10 +33,25 @@ public class MainUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         TF_Password = new javax.swing.JTextField();
         Btn_CrearUsuario = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Btn_IniciarSesion = new javax.swing.JButton();
         CheckBox_Artista = new javax.swing.JCheckBox();
+        Sp_Edad = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1400, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 736, Short.MAX_VALUE)
+        );
+
+        TP_Cliente.addTab("tab1", jPanel2);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -56,14 +75,16 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Iniciar Sesion");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Btn_IniciarSesion.setText("Iniciar Sesion");
+        Btn_IniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                Btn_IniciarSesionMouseClicked(evt);
             }
         });
 
         CheckBox_Artista.setText("Artista");
+
+        jLabel5.setText("Edad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,7 +103,7 @@ public class MainUI extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Btn_IniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(85, 85, 85))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -92,11 +113,15 @@ public class MainUI extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CheckBox_Artista)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CheckBox_Artista))
+                                .addGap(268, 268, 268)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(TF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(268, 268, 268)
-                                        .addComponent(TF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Sp_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(jLabel3)
@@ -112,7 +137,7 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(CB_Usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(42, 42, 42)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addGap(43, 43, 43)
@@ -123,9 +148,12 @@ public class MainUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(TF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(CheckBox_Artista)
-                .addGap(47, 47, 47)
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckBox_Artista)
+                    .addComponent(Sp_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(46, 46, 46)
                 .addComponent(Btn_CrearUsuario)
                 .addContainerGap(228, Short.MAX_VALUE))
         );
@@ -137,12 +165,16 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,16 +198,30 @@ public class MainUI extends javax.swing.JFrame {
     private void Btn_CrearUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_CrearUsuarioMouseClicked
         // TODO add your handling code here:
         
-        this.dispose();
+        String username = TF_Username.getText();
+        String password = TF_Password.getText();
+        int edad = (int)Sp_Edad.getValue();
+        if(CheckBox_Artista.isSelected()){
+            
+            String artisticName = JOptionPane.showInputDialog(this, "Ingrese su nombre artistico");
+            Artista a = new Artista(artisticName, username, password, edad);
+            
+        }
+        
+        TP_Cliente.setVisible(true);
+        jPanel2.setVisible(true);
+        jPanel1.setVisible(false);
+        
         
     }//GEN-LAST:event_Btn_CrearUsuarioMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void Btn_IniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_IniciarSesionMouseClicked
         // TODO add your handling code here:
+        
         
         this.dispose();
         
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_Btn_IniciarSesionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -214,16 +260,20 @@ public class MainUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_CrearUsuario;
+    private javax.swing.JButton Btn_IniciarSesion;
     private javax.swing.JComboBox<String> CB_Usuarios;
     private javax.swing.JCheckBox CheckBox_Artista;
     private javax.swing.JPanel MainPanel;
+    private javax.swing.JSpinner Sp_Edad;
     private javax.swing.JTextField TF_Password;
     private javax.swing.JTextField TF_Username;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTabbedPane TP_Cliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
