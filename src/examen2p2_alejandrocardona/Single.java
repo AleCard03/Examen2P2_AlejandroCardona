@@ -1,6 +1,6 @@
 
 package examen2p2_alejandrocardona;
 
-public class ListaReproduccion {
+public class Single extends Lanzamiento{
     
 }
