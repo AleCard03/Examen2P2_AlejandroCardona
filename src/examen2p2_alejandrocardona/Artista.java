@@ -1,9 +1,11 @@
 
 package examen2p2_alejandrocardona;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
-public class Artista extends Usuario {
+public class Artista extends Usuario implements Serializable {
     
     private String nombreArt;
     private ArrayList<Cancion> discografia;
@@ -55,6 +57,21 @@ public class Artista extends Usuario {
     public void addAlbum(ListaReproduccion l){
         
         albumes.add(l);
+        
+    }
+    @Override
+    public void setEdad(int edad){
+        
+        if(edad >= 12){
+            
+            super.edad = edad;
+            
+        }
+        else{
+            
+//            JOptionPane.showMessageDialog(null, "No se ha creado de manera exitosa");
+            
+        }
         
     }
     

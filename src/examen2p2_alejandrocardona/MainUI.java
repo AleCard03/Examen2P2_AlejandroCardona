@@ -1,15 +1,25 @@
 
 package examen2p2_alejandrocardona;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class MainUI extends javax.swing.JFrame {
+    
+    ArrayList<Usuario> users = new ArrayList();
 
     /**
      * Creates new form MainUI
      */
     public MainUI() {
         initComponents();
+        fillCB();
     }
 
     /**
@@ -91,43 +101,42 @@ public class MainUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(647, 647, 647)
+                .addGap(606, 606, 606)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(67, 67, 67)
+                .addComponent(jLabel1)
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Btn_IniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(85, 85, 85))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(99, 99, 99)
+                                .addComponent(TF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 579, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(59, 59, 59)
-                                .addComponent(CB_Usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CheckBox_Artista))
-                                .addGap(268, 268, 268)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(TF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CB_Usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Sp_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(TF_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(Btn_IniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(31, 31, 31))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(304, 304, 304)
-                        .addComponent(jLabel3)
-                        .addGap(268, 268, 268)
-                        .addComponent(TF_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(308, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(CheckBox_Artista)
+                                .addGap(193, 193, 193)
+                                .addComponent(jLabel5)
+                                .addGap(165, 165, 165)
+                                .addComponent(Sp_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,27 +144,26 @@ public class MainUI extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CB_Usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(42, 42, 42)
-                .addComponent(Btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                    .addComponent(jLabel1)
+                    .addComponent(Btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
-                .addGap(43, 43, 43)
+                .addGap(76, 76, 76)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(TF_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(TF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckBox_Artista)
                     .addComponent(Sp_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(46, 46, 46)
+                .addGap(80, 80, 80)
                 .addComponent(Btn_CrearUsuario)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
@@ -201,11 +209,39 @@ public class MainUI extends javax.swing.JFrame {
         String username = TF_Username.getText();
         String password = TF_Password.getText();
         int edad = (int)Sp_Edad.getValue();
+        File archivo;
+        FileOutputStream fw;
+        ObjectOutputStream bw;
+        
         if(CheckBox_Artista.isSelected()){
             
             String artisticName = JOptionPane.showInputDialog(this, "Ingrese su nombre artistico");
             Artista a = new Artista(artisticName, username, password, edad);
+            JOptionPane.showMessageDialog(this, "Se ha creado de manera exitosa");
             
+            users.add(a);
+            
+        }
+        else{
+            
+            Cliente c = new Cliente (username, password, edad);
+            JOptionPane.showMessageDialog(this, "Se ha creado de manera exitosa");
+            users.add(c);
+            
+        }
+        try {
+            archivo = new File ("./Usuarios.aaa");
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            for (Usuario user : users) {
+                
+                bw.writeObject(user);
+                
+            }
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         
         TP_Cliente.setVisible(true);
@@ -218,8 +254,22 @@ public class MainUI extends javax.swing.JFrame {
     private void Btn_IniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_IniciarSesionMouseClicked
         // TODO add your handling code here:
         
+        String pass = JOptionPane.showInputDialog("Ingrese la contraseña del usuario seleccionado");
+        Usuario userSel = (Usuario)(CB_Usuarios.getSelectedItem());
+        String passSel = userSel.getPassword();
+        if(pass.equals(passSel)){
+            
+            JOptionPane.showMessageDialog(this, "Ingresando...");
+            jPanel1.setVisible(false);
+            
+            
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(this, "Intente otra vez");
+            
+        }
         
-        this.dispose();
         
     }//GEN-LAST:event_Btn_IniciarSesionMouseClicked
 
@@ -256,6 +306,37 @@ public class MainUI extends javax.swing.JFrame {
                 new MainUI().setVisible(true);
             }
         });
+    }
+    
+    private void fillCB(){
+        
+        File archivo;
+        FileInputStream fr;
+        ObjectInputStream br;
+        try {
+            
+            archivo = new File("./Usuarios.aaa");
+            fr = new FileInputStream(archivo);
+            br = new ObjectInputStream(fr);
+            Object mem;
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel)CB_Usuarios.getModel();
+            modelo.removeAllElements();
+           
+            while((mem= br.readObject() )!= null){
+                
+                Usuario a = (Usuario)mem;
+                users.add(a);
+                modelo.addElement(a);
+                
+                
+            }
+            CB_Usuarios.setModel(modelo);
+           
+            
+            
+        } catch (Exception e) {
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,15 +1,17 @@
 
 package examen2p2_alejandrocardona;
 
-public abstract class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     
     private String username, password;
-    private int edad;
+    public int edad;
 
     public Usuario(String username, String password, int edad) {
         this.username = username;
         this.password = password;
-        this.edad = edad;
+        setEdad(edad);
     }
 
     public String getUsername() {
@@ -35,5 +37,13 @@ public abstract class Usuario {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-       
+
+    @Override
+    public String toString() {
+        return username;
+    }
+    
+    
+    
+    
 }
