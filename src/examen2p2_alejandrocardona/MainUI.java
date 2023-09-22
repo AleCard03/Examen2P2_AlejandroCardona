@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class MainUI extends javax.swing.JFrame {
     
     ArrayList<Usuario> users = new ArrayList();
+    Usuario u;
 
     /**
      * Creates new form MainUI
@@ -33,6 +34,8 @@ public class MainUI extends javax.swing.JFrame {
 
         MainPanel = new javax.swing.JPanel();
         TP_Cliente = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         CB_Usuarios = new javax.swing.JComboBox<>();
@@ -47,8 +50,38 @@ public class MainUI extends javax.swing.JFrame {
         CheckBox_Artista = new javax.swing.JCheckBox();
         Sp_Edad = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
+        TP_Artista = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1400, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+
+        TP_Cliente.addTab("Listas de Reproduccion", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1400, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+
+        TP_Cliente.addTab("Listas de Reproduccion de Otros Usuarios", jPanel4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -58,10 +91,10 @@ public class MainUI extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 736, Short.MAX_VALUE)
+            .addGap(0, 805, Short.MAX_VALUE)
         );
 
-        TP_Cliente.addTab("tab1", jPanel2);
+        TP_Cliente.addTab("Crear Lista de Reproduccion", jPanel2);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -163,8 +196,47 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(80, 80, 80)
                 .addComponent(Btn_CrearUsuario)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1400, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+
+        TP_Artista.addTab("Crear Lista de Reproduccion", jPanel5);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1400, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+
+        TP_Artista.addTab("", jPanel6);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1400, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+
+        TP_Artista.addTab("Crear Cancion", jPanel7);
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
@@ -174,7 +246,9 @@ public class MainUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE))
+                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING))
+            .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(TP_Artista, javax.swing.GroupLayout.Alignment.TRAILING))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +256,9 @@ public class MainUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE))
+                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE))
+            .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(TP_Artista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,17 +292,41 @@ public class MainUI extends javax.swing.JFrame {
         if(CheckBox_Artista.isSelected()){
             
             String artisticName = JOptionPane.showInputDialog(this, "Ingrese su nombre artistico");
-            Artista a = new Artista(artisticName, username, password, edad);
+            if( edad>=18){
+                
+                Artista a = new Artista(artisticName, username, password, edad);
             JOptionPane.showMessageDialog(this, "Se ha creado de manera exitosa");
             
             users.add(a);
+            TP_Cliente.setVisible(true);
+        jPanel2.setVisible(true);
+        jPanel1.setVisible(false);
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Debe ser mayor a 17 para ser un artista");
+            }
+            
             
         }
         else{
             
-            Cliente c = new Cliente (username, password, edad);
+            if(edad >= 12){
+                
+                Cliente c = new Cliente (username, password, edad);
             JOptionPane.showMessageDialog(this, "Se ha creado de manera exitosa");
             users.add(c);
+            TP_Cliente.setVisible(true);
+        jPanel2.setVisible(true);
+        jPanel1.setVisible(false);
+                
+            }
+            else{
+                
+                JOptionPane.showMessageDialog(this, "Debe ser mayor a 11 para ser un cliente");
+                
+            }
+            
             
         }
         try {
@@ -244,9 +344,7 @@ public class MainUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-        TP_Cliente.setVisible(true);
-        jPanel2.setVisible(true);
-        jPanel1.setVisible(false);
+        
         
         
     }//GEN-LAST:event_Btn_CrearUsuarioMouseClicked
@@ -261,6 +359,7 @@ public class MainUI extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, "Ingresando...");
             jPanel1.setVisible(false);
+            u = userSel;
             
             
         }
@@ -335,6 +434,7 @@ public class MainUI extends javax.swing.JFrame {
             
             
         } catch (Exception e) {
+            e.printStackTrace();
         }
         
     }
@@ -348,6 +448,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JSpinner Sp_Edad;
     private javax.swing.JTextField TF_Password;
     private javax.swing.JTextField TF_Username;
+    private javax.swing.JTabbedPane TP_Artista;
     private javax.swing.JTabbedPane TP_Cliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -356,5 +457,10 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     // End of variables declaration//GEN-END:variables
 }
