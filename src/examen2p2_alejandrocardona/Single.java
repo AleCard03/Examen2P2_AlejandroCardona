@@ -9,6 +9,16 @@ public class Single extends Lanzamiento{
         super(titulo, date, likes);
         
     }
+
+    public Cancion getC() {
+        return c;
+    }
+
+    public void setC(Cancion c) {
+        this.c = c;
+    }
+    
+    
     
     
 }

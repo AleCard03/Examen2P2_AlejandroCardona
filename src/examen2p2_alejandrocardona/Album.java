@@ -14,7 +14,11 @@ public class Album extends Lanzamiento{
         cantCanciones = canciones.size();
     }
     
-    
+    public void addCancion(Cancion c){
+        
+        canciones.add(c);
+        
+    }
     
     
 }

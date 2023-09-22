@@ -14,6 +14,9 @@ public class MainUI extends javax.swing.JFrame {
     
     ArrayList<Usuario> users = new ArrayList();
     Usuario u;
+    Lanzamiento lan;
+    ArrayList<Lanzamiento> lanzamientos = new ArrayList();
+    boolean continuar = true;
 
     /**
      * Creates new form MainUI
@@ -39,7 +42,6 @@ public class MainUI extends javax.swing.JFrame {
         TF_DuracionCancion = new javax.swing.JTextField();
         Btn_AñadirCancion = new javax.swing.JButton();
         Btn_FinAddCancion = new javax.swing.JButton();
-        Btn_SaveAndExit = new javax.swing.JButton();
         MainPanel = new javax.swing.JPanel();
         TP_Cliente = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -60,15 +62,12 @@ public class MainUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         TP_Artista = new javax.swing.JTabbedPane();
         PanelCrearLanzamiento = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        List_Album = new javax.swing.JList<>();
+        CB_SingleAlbum = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        List_Canciones = new javax.swing.JList<>();
-        Btn_Add = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        TF_TituloLanzamiento = new javax.swing.JTextField();
+        TF_FechadeCreacion = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -87,8 +86,11 @@ public class MainUI extends javax.swing.JFrame {
         });
 
         Btn_FinAddCancion.setText("Finalizar");
-
-        Btn_SaveAndExit.setText("Añadir Cancion y Finalizar");
+        Btn_FinAddCancion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_FinAddCancionMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout Dialog_AddCancionesLayout = new javax.swing.GroupLayout(Dialog_AddCanciones.getContentPane());
         Dialog_AddCanciones.getContentPane().setLayout(Dialog_AddCancionesLayout);
@@ -101,14 +103,10 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(Btn_AñadirCancion))
                 .addGap(69, 69, 69)
-                .addGroup(Dialog_AddCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Dialog_AddCancionesLayout.createSequentialGroup()
-                        .addComponent(Btn_FinAddCancion)
-                        .addGap(123, 123, 123)
-                        .addComponent(Btn_SaveAndExit))
-                    .addGroup(Dialog_AddCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TF_TituloCancion)
-                        .addComponent(TF_DuracionCancion, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)))
+                .addGroup(Dialog_AddCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TF_TituloCancion)
+                    .addComponent(TF_DuracionCancion, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                    .addComponent(Btn_FinAddCancion, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         Dialog_AddCancionesLayout.setVerticalGroup(
@@ -125,8 +123,7 @@ public class MainUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(Dialog_AddCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_AñadirCancion)
-                    .addComponent(Btn_FinAddCancion)
-                    .addComponent(Btn_SaveAndExit))
+                    .addComponent(Btn_FinAddCancion))
                 .addGap(65, 65, 65))
         );
 
@@ -274,24 +271,23 @@ public class MainUI extends javax.swing.JFrame {
                 .addContainerGap(299, Short.MAX_VALUE))
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Album" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        CB_SingleAlbum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Album" }));
+        CB_SingleAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                CB_SingleAlbumActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setViewportView(List_Album);
+        jLabel6.setText("Titulo");
 
-        jLabel6.setText("Canciones a Agregar");
-
-        jLabel7.setText("Canciones:");
-
-        jScrollPane2.setViewportView(List_Canciones);
-
-        Btn_Add.setText("<-----");
+        jLabel7.setText("Fecha de Creacion");
 
         jButton2.setText("Crear Lanzamiento");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelCrearLanzamientoLayout = new javax.swing.GroupLayout(PanelCrearLanzamiento);
         PanelCrearLanzamiento.setLayout(PanelCrearLanzamientoLayout);
@@ -300,42 +296,34 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(PanelCrearLanzamientoLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_SingleAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
                     .addGroup(PanelCrearLanzamientoLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(176, 176, 176)
                         .addGroup(PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addGroup(PanelCrearLanzamientoLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(Btn_Add)))
-                        .addGap(68, 68, 68)
-                        .addGroup(PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(266, Short.MAX_VALUE))
+                            .addComponent(jLabel7))
+                        .addGap(73, 73, 73)
+                        .addGroup(PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TF_TituloLanzamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                            .addComponent(TF_FechadeCreacion))))
+                .addContainerGap(929, Short.MAX_VALUE))
         );
         PanelCrearLanzamientoLayout.setVerticalGroup(
             PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCrearLanzamientoLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addComponent(CB_SingleAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
                 .addGroup(PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(TF_TituloLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addGroup(PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCrearLanzamientoLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(PanelCrearLanzamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)))
-                    .addGroup(PanelCrearLanzamientoLayout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(Btn_Add)))
-                .addContainerGap(187, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addComponent(TF_FechadeCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(172, 172, 172)
+                .addComponent(jButton2)
+                .addContainerGap(356, Short.MAX_VALUE))
         );
 
         TP_Artista.addTab("Crear Lanzamiento", PanelCrearLanzamiento);
@@ -465,8 +453,19 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Se ha creado de manera exitosa");
             
             users.add(a);
-            TP_Cliente.setVisible(true);
-        jPanel2.setVisible(true);
+            u = a;
+            if(u instanceof Artista){
+                
+                TP_Cliente.setVisible(false);
+                TP_Artista.setVisible(true);
+                
+            }
+            else if(u instanceof Cliente){
+                
+                TP_Artista.setVisible(false);
+                TP_Cliente.setVisible(true);
+                
+            }
         LoginPanel.setVisible(false);
                 
             }
@@ -483,8 +482,19 @@ public class MainUI extends javax.swing.JFrame {
                 Cliente c = new Cliente (username, password, edad);
             JOptionPane.showMessageDialog(this, "Se ha creado de manera exitosa");
             users.add(c);
-            TP_Cliente.setVisible(true);
-        jPanel2.setVisible(true);
+            u = c;
+            if(u instanceof Artista){
+                
+                TP_Cliente.setVisible(false);
+                TP_Artista.setVisible(true);
+                
+            }
+            else if(u instanceof Cliente){
+                
+                TP_Artista.setVisible(false);
+                TP_Cliente.setVisible(true);
+                
+            }
         LoginPanel.setVisible(false);
                 
             }
@@ -527,7 +537,18 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingresando...");
             LoginPanel.setVisible(false);
             u = userSel;
-            
+            if(u instanceof Artista){
+                
+                TP_Cliente.setVisible(false);
+                TP_Artista.setVisible(true);
+                
+            }
+            else if(u instanceof Cliente){
+                
+                TP_Artista.setVisible(false);
+                TP_Cliente.setVisible(true);
+                
+            }
             
         }
         else{
@@ -545,12 +566,51 @@ public class MainUI extends javax.swing.JFrame {
         String nombre = TF_TituloCancion.getText();
         double duracion = Double.parseDouble(TF_DuracionCancion.getText());
         Cancion c = new Cancion(nombre,duracion);
+        if(CB_SingleAlbum.getSelectedIndex()==0){
+            
+            Single s = (Single)lan;
+            s.setC(c);
+            Dialog_AddCanciones.setVisible(false);
+            lanzamientos.add(s);
+            
+        }
+        
+        c.setLan(lan);
+        TF_TituloCancion.setText("");
+        TF_DuracionCancion.setText("");
         
     }//GEN-LAST:event_Btn_AñadirCancionMouseClicked
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void CB_SingleAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_SingleAlbumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_CB_SingleAlbumActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        continuar = true;
+        
+        String titulo = TF_TituloLanzamiento.getText();
+        String date = TF_FechadeCreacion.getText();
+        int cont = 0;
+        Lanzamiento l = new Lanzamiento(titulo, date, cont);
+        lan = l;
+            
+        Dialog_AddCanciones.setVisible(true);
+        Dialog_AddCanciones.setBounds(0, 0, 1000, 300);
+        TF_TituloLanzamiento.setText("");
+        TF_FechadeCreacion.setText("");
+            
+
+        
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void Btn_FinAddCancionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_FinAddCancionMouseClicked
+        // TODO add your handling code here:
+        
+        continuar = false;
+        Dialog_AddCanciones.setVisible(false);
+        
+    }//GEN-LAST:event_Btn_FinAddCancionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -619,29 +679,27 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Add;
     private javax.swing.JButton Btn_AñadirCancion;
     private javax.swing.JButton Btn_CrearUsuario;
     private javax.swing.JButton Btn_FinAddCancion;
     private javax.swing.JButton Btn_IniciarSesion;
-    private javax.swing.JButton Btn_SaveAndExit;
+    private javax.swing.JComboBox<String> CB_SingleAlbum;
     private javax.swing.JComboBox<String> CB_Usuarios;
     private javax.swing.JCheckBox CheckBox_Artista;
     private javax.swing.JDialog Dialog_AddCanciones;
-    private javax.swing.JList<String> List_Album;
-    private javax.swing.JList<String> List_Canciones;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel PanelCrearLanzamiento;
     private javax.swing.JSpinner Sp_Edad;
     private javax.swing.JTextField TF_DuracionCancion;
+    private javax.swing.JTextField TF_FechadeCreacion;
     private javax.swing.JTextField TF_Password;
     private javax.swing.JTextField TF_TituloCancion;
+    private javax.swing.JTextField TF_TituloLanzamiento;
     private javax.swing.JTextField TF_Username;
     private javax.swing.JTabbedPane TP_Artista;
     private javax.swing.JTabbedPane TP_Cliente;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -659,7 +717,5 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
