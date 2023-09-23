@@ -13,10 +13,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class MainUI extends javax.swing.JFrame {
+    ArrayList<Cancion> temp = new ArrayList();
     
     ArrayList<Usuario> users = new ArrayList();
     Usuario u;
-    Lanzamiento lan;
+    Object lan;
     ArrayList<Lanzamiento> lanzamientos = new ArrayList();
     boolean continuar = true;
 
@@ -546,6 +547,7 @@ public class MainUI extends javax.swing.JFrame {
         String nombre = TF_TituloCancion.getText();
         double duracion = Double.parseDouble(TF_DuracionCancion.getText());
         Cancion c = new Cancion(nombre,duracion);
+        
         if(CB_SingleAlbum.getSelectedIndex()==0){
             
             Single s = (Single)lan;
@@ -553,18 +555,51 @@ public class MainUI extends javax.swing.JFrame {
             Dialog_AddCanciones.setVisible(false);
             lanzamientos.add(s);
             ((Artista)u).addAlbum(s);
+            c.setLan((Single)lan);
             
         }
         else{
             
             Album a = (Album)lan;
+            temp.add(c);
             a.addCancion(c);
             ((Artista)u).addAlbum(a);
+            c.setLan((Album)lan);
+            ArrayList<Lanzamiento> mem = ((Artista)u).getAlbumes();
+            
+            for (Lanzamiento lanzamiento : mem) {
+                
+                if(lanzamiento instanceof Album){
+                    
+                    if(lanzamiento == a){
+                        
+                        ((Artista)u).getAlbumes().remove(a);
+                        
+                    }
+                    
+                }
+                
+            }
+//            for (ArrayList<Lanzamiento> object : mem) {
+//                
+//                if(object instanceof ArrayList<Album>){
+//                    
+//                    if(object == a){
+//                    
+//                        mem.remove(object);
+//                    
+//                    }
+//                    
+//                }
+//                
+//                
+//                
+//            }
             
             
         }
         
-        c.setLan(lan);
+        
         TF_TituloCancion.setText("");
         TF_DuracionCancion.setText("");
         
@@ -581,7 +616,18 @@ public class MainUI extends javax.swing.JFrame {
         String titulo = TF_TituloLanzamiento.getText();
         String date = TF_FechadeCreacion.getText();
         int cont = 0;
-        Lanzamiento l = new Lanzamiento(titulo, date, cont);
+        Object l;
+        if(CB_SingleAlbum.getSelectedIndex() == 0){
+            
+            l = new Single(titulo, date, cont);
+            
+        }
+        else{
+            
+            l = new Album(titulo, date, cont);
+            
+        }
+        
         lan = l;
             
         Dialog_AddCanciones.setVisible(true);
@@ -621,6 +667,9 @@ public class MainUI extends javax.swing.JFrame {
                     }
                     
                 }
+                
+            }else{
+                
                 
             }
             
