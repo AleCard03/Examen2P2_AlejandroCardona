@@ -19,6 +19,15 @@ public class Album extends Lanzamiento{
         canciones.add(c);
         
     }
+
+    public ArrayList<Cancion> getCanciones() {
+        return canciones;
+    }
+
+    public void setCanciones(ArrayList<Cancion> canciones) {
+        this.canciones = canciones;
+    }
+    
     
     
 }

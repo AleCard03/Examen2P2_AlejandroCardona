@@ -1,9 +1,11 @@
 
 package examen2p2_alejandrocardona;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class MainUI extends javax.swing.JFrame {
     public MainUI() {
         initComponents();
         fillCB();
+        fillCBA();
     }
 
     /**
@@ -68,11 +71,11 @@ public class MainUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         TF_TituloLanzamiento = new javax.swing.JTextField();
         TF_FechadeCreacion = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
+        PanelArbol = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tree_Lanzamientos = new javax.swing.JTree();
+        Btn_CargarArbol = new javax.swing.JButton();
+        CB_Artistas = new javax.swing.JComboBox<>();
 
         jLabel8.setText("Titulo de Cancion");
 
@@ -328,70 +331,46 @@ public class MainUI extends javax.swing.JFrame {
 
         TP_Artista.addTab("Crear Lanzamiento", PanelCrearLanzamiento);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Artista");
+        Tree_Lanzamientos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(Tree_Lanzamientos);
+
+        Btn_CargarArbol.setText("Cargar Arbol");
+        Btn_CargarArbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_CargarArbolMouseClicked(evt);
+            }
+        });
+
+        CB_Artistas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout PanelArbolLayout = new javax.swing.GroupLayout(PanelArbol);
+        PanelArbol.setLayout(PanelArbolLayout);
+        PanelArbolLayout.setHorizontalGroup(
+            PanelArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelArbolLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(PanelArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Btn_CargarArbol)
+                    .addGroup(PanelArbolLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(CB_Artistas, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(516, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
+        PanelArbolLayout.setVerticalGroup(
+            PanelArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelArbolLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(PanelArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_Artistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(Btn_CargarArbol)
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
-        TP_Artista.addTab("", jPanel6);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-
-        TP_Artista.addTab("Crear Cancion", jPanel7);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-
-        TP_Artista.addTab("tab4", jPanel8);
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-
-        TP_Artista.addTab("tab5", jPanel9);
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-
-        TP_Artista.addTab("Visualizar Lanzamientos", jPanel10);
+        TP_Artista.addTab("Visualizar Lanzamientos", PanelArbol);
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
@@ -411,9 +390,9 @@ public class MainUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(LoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE))
+                .addComponent(TP_Cliente, javax.swing.GroupLayout.Alignment.TRAILING))
             .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(TP_Artista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE))
+                .addComponent(TP_Artista, javax.swing.GroupLayout.Alignment.TRAILING))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -432,6 +411,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void Btn_CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CrearUsuarioActionPerformed
         // TODO add your handling code here:
+        fillCBA();
     }//GEN-LAST:event_Btn_CrearUsuarioActionPerformed
 
     private void Btn_CrearUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_CrearUsuarioMouseClicked
@@ -521,7 +501,7 @@ public class MainUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-        
+        fillCBA();
         
         
     }//GEN-LAST:event_Btn_CrearUsuarioMouseClicked
@@ -572,6 +552,15 @@ public class MainUI extends javax.swing.JFrame {
             s.setC(c);
             Dialog_AddCanciones.setVisible(false);
             lanzamientos.add(s);
+            ((Artista)u).addAlbum(s);
+            
+        }
+        else{
+            
+            Album a = (Album)lan;
+            a.addCancion(c);
+            ((Artista)u).addAlbum(a);
+            
             
         }
         
@@ -608,9 +597,60 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         continuar = false;
+        String acum = "";
         Dialog_AddCanciones.setVisible(false);
+        ArrayList<Lanzamiento> al = ((Artista)u).getAlbumes();
+        for (Lanzamiento lanzamiento : al) {
+            
+            acum+=lanzamiento.getTitulo()+";";
+            
+            if(lanzamiento instanceof Album){
+                
+                ArrayList<Cancion> al2 = (ArrayList<Cancion>)((Album)lanzamiento).getCanciones();
+                for(int i = 0; i<al2.size();i++){
+                    
+                    if(i == al2.size()-1){
+                        
+                        acum+=al2.get(i).getNombre()+"\n";
+                        
+                    }
+                    else{
+                        
+                        acum+=al2.get(i).getNombre()+"&";
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        File archivo;
+        FileWriter fw;
+        BufferedWriter bw;
+        
+        try {
+            
+            archivo = new File("./Autores.txt");
+            fw = new FileWriter(archivo);
+            bw = new BufferedWriter(fw);
+            
+            bw.write(acum);
+            bw.flush();
+            bw.close();
+            fw.close();
+            
+        } catch (Exception e) {
+        }
         
     }//GEN-LAST:event_Btn_FinAddCancionMouseClicked
+
+    private void Btn_CargarArbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_CargarArbolMouseClicked
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_Btn_CargarArbolMouseClicked
 
     /**
      * @param args the command line arguments
@@ -647,6 +687,13 @@ public class MainUI extends javax.swing.JFrame {
         });
     }
     
+    private void fillTree(){
+        
+        Artista a =(Artista) CB_Artistas.getSelectedItem();
+        
+        
+    }
+    
     private void fillCB(){
         
         File archivo;
@@ -677,18 +724,55 @@ public class MainUI extends javax.swing.JFrame {
         }
         
     }
+    
+    private void fillCBA(){
+        
+        File archivo;
+        FileInputStream fr;
+        ObjectInputStream br;
+        try {
+            
+            archivo = new File("./Usuarios.aaa");
+            fr = new FileInputStream(archivo);
+            br = new ObjectInputStream(fr);
+            Object mem;
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel)CB_Artistas.getModel();
+            modelo.removeAllElements();
+           
+            while((mem= br.readObject() )!= null){
+                if(mem instanceof Artista){
+                    
+                Usuario a = (Usuario)mem;
+                modelo.addElement(a);
+                    
+                }
+                
+                
+                
+            }
+            CB_Artistas.setModel(modelo);
+           
+            
+            
+        } catch (Exception e) {
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_AñadirCancion;
+    private javax.swing.JButton Btn_CargarArbol;
     private javax.swing.JButton Btn_CrearUsuario;
     private javax.swing.JButton Btn_FinAddCancion;
     private javax.swing.JButton Btn_IniciarSesion;
+    private javax.swing.JComboBox<String> CB_Artistas;
     private javax.swing.JComboBox<String> CB_SingleAlbum;
     private javax.swing.JComboBox<String> CB_Usuarios;
     private javax.swing.JCheckBox CheckBox_Artista;
     private javax.swing.JDialog Dialog_AddCanciones;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JPanel MainPanel;
+    private javax.swing.JPanel PanelArbol;
     private javax.swing.JPanel PanelCrearLanzamiento;
     private javax.swing.JSpinner Sp_Edad;
     private javax.swing.JTextField TF_DuracionCancion;
@@ -699,6 +783,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JTextField TF_Username;
     private javax.swing.JTabbedPane TP_Artista;
     private javax.swing.JTabbedPane TP_Cliente;
+    private javax.swing.JTree Tree_Lanzamientos;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -709,13 +794,9 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

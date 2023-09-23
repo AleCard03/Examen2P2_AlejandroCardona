@@ -9,9 +9,9 @@ public class Artista extends Usuario implements Serializable {
     
     private String nombreArt;
     private ArrayList<Cancion> discografia;
-    private ArrayList<ListaReproduccion> albumes;
+    private ArrayList<Lanzamiento> albumes;
 
-    public Artista(String nombreArt, ArrayList<Cancion> discografia, ArrayList<ListaReproduccion> albumes, String username, String password, int edad) {
+    public Artista(String nombreArt, ArrayList<Cancion> discografia, ArrayList<Lanzamiento> albumes, String username, String password, int edad) {
         super(username, password, edad);
         this.nombreArt = nombreArt;
         this.discografia = discografia;
@@ -41,11 +41,11 @@ public class Artista extends Usuario implements Serializable {
         this.discografia = discografia;
     }
 
-    public ArrayList<ListaReproduccion> getAlbumes() {
+    public ArrayList<Lanzamiento> getAlbumes() {
         return albumes;
     }
 
-    public void setAlbumes(ArrayList<ListaReproduccion> albumes) {
+    public void setAlbumes(ArrayList<Lanzamiento> albumes) {
         this.albumes = albumes;
     }
     
@@ -54,7 +54,7 @@ public class Artista extends Usuario implements Serializable {
         discografia.add(c);
         
     }
-    public void addAlbum(ListaReproduccion l){
+    public void addAlbum(Lanzamiento l){
         
         albumes.add(l);
         
