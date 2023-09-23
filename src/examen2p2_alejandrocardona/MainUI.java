@@ -11,6 +11,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class MainUI extends javax.swing.JFrame {
     ArrayList<Cancion> temp = new ArrayList();
@@ -564,37 +566,9 @@ public class MainUI extends javax.swing.JFrame {
             temp.add(c);
             a.addCancion(c);
             ((Artista)u).addAlbum(a);
+            
             c.setLan((Album)lan);
             ArrayList<Lanzamiento> mem = ((Artista)u).getAlbumes();
-            
-            for (Lanzamiento lanzamiento : mem) {
-                
-                if(lanzamiento instanceof Album){
-                    
-                    if(lanzamiento == a){
-                        
-                        ((Artista)u).getAlbumes().remove(a);
-                        
-                    }
-                    
-                }
-                
-            }
-//            for (ArrayList<Lanzamiento> object : mem) {
-//                
-//                if(object instanceof ArrayList<Album>){
-//                    
-//                    if(object == a){
-//                    
-//                        mem.remove(object);
-//                    
-//                    }
-//                    
-//                }
-//                
-//                
-//                
-//            }
             
             
         }
@@ -697,7 +671,35 @@ public class MainUI extends javax.swing.JFrame {
     private void Btn_CargarArbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_CargarArbolMouseClicked
         // TODO add your handling code here:
         
+        DefaultTreeModel modelo = (DefaultTreeModel)Tree_Lanzamientos.getModel();
+        DefaultMutableTreeNode nodeRoot = (DefaultMutableTreeNode)modelo.getRoot();
+        modelo.setRoot(nodeRoot);
+        modelo = new DefaultTreeModel(nodeRoot);
+        Artista a = (Artista)CB_Artistas.getSelectedItem();
+        System.out.println(a);
+        for (Lanzamiento cancion : a.getAlbumes()) {
+            System.out.println(cancion);
+            
+            DefaultMutableTreeNode nodeChild = new DefaultMutableTreeNode(cancion);
+            
+            if(cancion instanceof Album){
+                
+                ArrayList<Cancion> memory = ((Album)cancion).getCanciones();
+                for (Cancion cancion1 : memory) {
+                    
+                    DefaultMutableTreeNode nodegc = new DefaultMutableTreeNode(cancion1);
+                    nodeChild.add(nodegc);
+                    
+                }
+                
+                
+            }
+            nodeRoot.add(nodeChild);
+            
+        }
         
+        modelo.reload();
+        Tree_Lanzamientos.setModel(modelo);
         
     }//GEN-LAST:event_Btn_CargarArbolMouseClicked
 
